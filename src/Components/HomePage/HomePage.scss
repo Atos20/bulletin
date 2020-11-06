@@ -34,4 +34,58 @@
             margin: 2%;
         }
     }
+
+    .banner{
+        height: 3%;
+        background-color: bisque;
+        overflow: scroll;
+
+        .banner-container{
+            height: 100%;
+            margin: 1% 0% 0% 0%;
+            padding: 1%;
+            background-color: blueviolet;
+        }
+    }
+
+    .categories-container{
+        background-color: chocolate;
+        height: 30%;
+        display: grid;
+        grid-template-columns: repeat(10, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        
+        .categories{
+            height: 100%;
+            background-color: darkcyan;
+            grid-area: 1/ 1 / 10 / 8;
+            margin:2%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            grid-gap: 5px;
+            align-content: center;
+            grid-auto-flow: row;
+            justify-content: center;
+            
+            .category{
+                background-color: darkred;
+                height: 7em;
+                width: 7em;
+                border-radius: 50%;
+                justify-self: center;
+                align-self: center;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                margin: 3%;
+                .category-name{
+                    // align-self: center;
+                    color: darksalmon;
+                }
+            }
+        }
+    }
+
+
 }
