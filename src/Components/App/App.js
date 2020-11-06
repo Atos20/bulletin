@@ -15,40 +15,51 @@ export class App extends Component {
     }
   }
   
-  componentDidMount = () => {
-    this.populateCategories()
-  }
+  // componentDidMount = () => {
+  //   this.populateCategories()
+  //   this.requestData()
+  // }
 
   populateCategories = () => {
     allNewsCategories.forEach(category => {
       this.setState(prevState => ({
         newsData: {
           ...prevState.newsData, 
-          [category]: {}}
+          [category]: {}
+        }
       }))
     })
-    this.requestData('sports')
+    
   }
 
-  requestData = async(category) => {
-    const promise = await getTopStories(category)
-    this.setState(prevState => ({
-       newsData: {
-         ...prevState.newsData,
-        [category]: promise
-       }
-    }))
+  requestData = async() => {
+    try{
+      await allNewsCategories.forEach(category =>{
+        const promise = getTopStories(category)
+        .then(data =>  this.setState(prevState => ({
+          newsData: {
+             ...prevState.newsData,
+            [category]: data
+          }
+        })))
+      })
+    } catch(error){
+      console.log(error)
+      this.setState({error})
+    }
   }
-
 
   render() {
+
     return (
       <div className="App">
 
       {/* <Router
       exact
       path='/home'> */}
-        <HomePage />
+        <HomePage 
+          newsData={this.state.newsData}
+        />
       {/* </Router> */}
 
       </div>

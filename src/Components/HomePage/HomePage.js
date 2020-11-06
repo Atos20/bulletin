@@ -3,7 +3,25 @@ import './HomePage.scss'
 import moment from 'moment'
 
 
-export const HomePage = () => {
+export const HomePage = (props) => {
+
+    const tags = Object.keys(props.newsData).map((tag, i) => {
+        return (
+          <div 
+            id={tag}
+            key={i}
+            className="category">
+              <h3 
+                id={tag}
+                className="category-name">
+                {tag}
+              </h3>
+          </div>
+        )
+    })
+
+    
+
     return (
         <body className="homepage">
           <nav className="nav-bar">
@@ -23,7 +41,20 @@ export const HomePage = () => {
             </div>
           </nav>
 
-          <section className="categories">
+          <section className="banner">
+            <div className="banner-container">
+                
+            </div>
+          </section>
+
+          <section className="categories-container">
+            <div className="categories">
+            {tags}
+            </div>
+
+            <div className="some-news-container">
+
+            </div>
 
           </section>
         </body>
