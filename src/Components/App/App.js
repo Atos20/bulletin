@@ -21,25 +21,25 @@ export class App extends Component {
   populateCategories = () => {
     allNewsCategories.forEach(category => {
       this.setState(prevState => ({
-        newsData: {...prevState.newsData, [category]: 'something'}
+        newsData: {
+          ...prevState.newsData, 
+          [category]: {}}
       }))
     })
-    this.requestData()
+    this.requestData('sports')
   }
 
   requestData = async(category) => {
-    const promise = await getTopStories('us')
+    const promise = await getTopStories(category)
     this.setState(prevState => ({
        newsData: {
          ...prevState.newsData,
-        'us': promise
+        [category]: promise
        }
     }))
   }
 
-
-
-
+  
   render() {
     
     return (
