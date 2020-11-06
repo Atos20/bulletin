@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.scss';
 import { getTopStories } from '../../apiCalls'
 import allNewsCategories from '../../data/data'
-
+import { HomePage } from '../HomePage/HomePage'
+import { Route, Router, Switch } from 'react-router-dom';
 export class App extends Component {
   constructor(){
     super()
@@ -39,12 +40,17 @@ export class App extends Component {
     }))
   }
 
-  
+
   render() {
-    
     return (
       <div className="App">
-        <h1 className="hola">hola</h1>
+
+      {/* <Router
+      exact
+      path='/home'> */}
+        <HomePage />
+      {/* </Router> */}
+
       </div>
     )
   }
