@@ -18,6 +18,7 @@ export class App extends Component {
     }
   }
 
+  
   saveReading = (event) => {
     const id = event.target.id.split('#')
     const allNewsCopy = this.state.newsData
