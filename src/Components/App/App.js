@@ -3,7 +3,10 @@ import './App.scss';
 import { getTopStories } from '../../apiCalls'
 import allNewsCategories from '../../data/data'
 import { HomePage } from '../HomePage/HomePage'
-// import { Route, Router, Switch } from 'react-router-dom';
+import { LaterReads } from '../LaterReads/LaterReads'
+import { Switch, Route, Link} from "react-router-dom";
+
+import moment from 'moment'
 export class App extends Component {
   constructor(){
     super()
@@ -18,7 +21,7 @@ export class App extends Component {
     }
   }
 
-  
+
   saveReading = (event) => {
     const id = event.target.id.split('#')
     const allNewsCopy = this.state.newsData
@@ -81,17 +84,66 @@ export class App extends Component {
 
     return (
       <div className="App">
+      
+        <nav className="nav-bar">
+          <div className="day-information">
+              <h5 className="app-title">{moment().format('LLL')}</h5>
+            </div>
+            <div className="title-container">
+              <h1 className="app-title">CommuniKaté</h1>
+              <h3 className="sub-title">Top stories Only</h3>
+            </div>
+            <div className="controls-container">
+          </div>
+        </nav>
 
+        <section className="banner">
+          <div className="banner-container">
+            <div className="interactive-controls">
+            <Link
+              to='/home'>
+              <button 
+              className="app-title">
+              home
+              </button>
+            </Link>
+            <Link
+              to='/my_reads'>
+              <button 
+              className="app-title">
+              My reads
+              </button>
+            </Link>
 
-        <HomePage 
-          newsData={this.state.newsData}
-          selectCategory={this.selectCategory}
-          currentCategory={this.state.currentCategory}
-          generateRandomCategory={this.generateRandomCategory}
-          saveReading={this.saveReading}
-        />
+            <Link to='/home'>
+              <button 
+                onClick={this.generateRandomCategory}
+                className="app-title">
+                randomize
+                </button>
+            </Link>
+            </div>
+          </div>
+        </section>
+        <Switch>
+            <Route 
+            exact
+            path='/home'>
+              <HomePage 
+                newsData={this.state.newsData}
+                selectCategory={this.selectCategory}
+                currentCategory={this.state.currentCategory}
+                saveReading={this.saveReading}
+              />
+            </Route>
 
+            <Route 
+              exact
+              path='/my_reads'>
+                <LaterReads/>
+            </Route>
 
+        </Switch>
       </div>
     )
   }
