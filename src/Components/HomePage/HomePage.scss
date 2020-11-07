@@ -45,6 +45,10 @@
             margin: 1% 0% 0% 0%;
             padding: 1%;
             background-color: blueviolet;
+            display: inline-flex;
+            width: 100%;
+
+            
         }
     }
 
@@ -123,7 +127,38 @@
                 grid-template-rows: repeat(6 , .5fr);
                 align-content: start;
 
-               
+       
+
+            .add-icon{
+                color: blue;
+                font-size: 2em;
+                grid-area: 1/ 5 / 1 / 6;
+                z-index: 1;
+                margin: 1%;
+                border-radius: 2em;
+                justify-self: flex-end;
+                text-decoration:none;
+                font-family:Arial;
+                display:block;
+                width: 2em;
+                
+            }
+
+            .add-icon:hover{
+                color: blue;
+                
+            }
+        
+
+                .add-icon:hover{
+                    color: grey;
+                    border: none;
+                    
+                    .clock{
+                        background-color: white;
+                        // color: transparent;
+                    }
+                }
                 
                 .article-title{
                     font-size: 1.3em;
