@@ -1,10 +1,10 @@
 import React from 'react'
 import './HomePage.scss'
 import moment from 'moment'
-
+import { FaClock } from "react-icons/fa";
 
 export const HomePage = (props) => {
-console.log(props)
+  // console.log(props)
     const tags = Object.keys(props.newsData).map((tag, i) => {
         return (
           <div 
@@ -31,11 +31,25 @@ console.log(props)
           </article>
         )
       }
-      return props.currentCategory.topStories.map(story => {
+      return props.currentCategory.topStories.map((story, i) => {
         return (
-          <article className="article-container">
+          <article 
+            key={i}
+            className="article-container">
+            
             <h2 className="article-title">{story.title}</h2>
-            <img className="article-img" src={story.multimedia[0].url} alt={story.multimedia[0].caption}/>
+           
+              <div
+                className="add-icon">
+                  <i 
+                  id={`${props.currentCategory.dataType}#${story.created_date}`}
+                  onClick={(event) => props.saveReading(event)}
+                  className="far fa-bookmark"></i>
+                </div>
+    
+       
+
+            <img id={story.created_date} className="article-img" src={story.multimedia[0].url} alt={story.multimedia[0].caption}/>
             <div className="additional-info">
               <p className="info published_date">Published date {moment(story.published_date).format('LLLL')}</p>
               <p className="info updated_date">Updated date {moment(story.updated_date).format('LLLL')}</p>
@@ -51,10 +65,9 @@ console.log(props)
       })
 
     }
-    
 
     return (
-        <body className="homepage">
+        <section className="homepage">
           <nav className="nav-bar">
             
             <div className="day-information">
@@ -67,14 +80,20 @@ console.log(props)
             </div>
 
             <div className="controls-container">
-                <button className="app-title">log-in</button>
-                <button className="app-title">log-in</button>
             </div>
+
           </nav>
 
           <section className="banner">
             <div className="banner-container">
-                
+                <div className="interactive-controls">
+                <button
+                  
+                  className="app-title">vie for later</button>
+                <button 
+                  onClick={props.generateRandomCategory}
+                  className="app-title">randomize</button>
+                </div>
             </div>
           </section>
 
@@ -89,7 +108,7 @@ console.log(props)
             </div>
 
           </section>
-        </body>
+        </section>
     )
 }
 
