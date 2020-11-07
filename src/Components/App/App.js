@@ -13,32 +13,41 @@ export class App extends Component {
       allNewsCategories: allNewsCategories,
       selectedCategories: [],
       currentCategory: {},
+      laterReadings:[],
       error: '',
     }
   }
 
-  componentDidMount =  async () => {
-    await this.requestData()
-    await this.generateRandomCategory()
-  }
-  
-  generateRandomCategory = async () => {
-    const randomCategory = this.state.allNewsCategories[Math.floor(Math.random() * allNewsCategories.length)];
-    console.log(this.state.newsData)
+  saveReading = (event) => {
+    const id = event.target.id.split('#')
+    const allNewsCopy = this.state.newsData
+    const savedElement = allNewsCopy[id[0]].results.find(entry => {
+      return entry.created_date === id[1]
+    });
+    this.setState({laterReadings: [...this.state.laterReadings, savedElement]})
   }
 
-  displayChosenCategory = async (category = 'arts') => {
+  componentDidMount =  async () => {
+    await this.requestData()
+  }
+  
+  generateRandomCategory =  () => {
+    const randomCategory = this.state.allNewsCategories[Math.floor(Math.random() * allNewsCategories.length)];
+    this.displayChosenCategory(randomCategory)
+  }
+
+  displayChosenCategory = async (category) => {
     const chosenOne =  await this.state.newsData[category]
-    console.log(chosenOne)
     const newData = Object.keys(chosenOne).reduce((data) =>{
       data.section = chosenOne.section
       data.topStories = chosenOne.results
       data.last_updated = chosenOne.last_updated
+      data.id = chosenOne.created_date
+      data.dataType = category
       return data
     }, {})
-    console.log(newData)
     this.setState(prevState => ({
-      currentCategory: {...prevState.currentCategory =  newData}
+      currentCategory: {...prevState.currentCategory =   newData}
     }))
   }
 
@@ -60,7 +69,6 @@ export class App extends Component {
   }
 
   selectCategory = (event) => {
-    console.log(event)
     const category = event.target.id
     if (!this.state.selectedCategories.includes(category)){
       this.setState({selectedCategories: [...this.state.selectedCategories, category]});
@@ -78,6 +86,8 @@ export class App extends Component {
           newsData={this.state.newsData}
           selectCategory={this.selectCategory}
           currentCategory={this.state.currentCategory}
+          generateRandomCategory={this.generateRandomCategory}
+          saveReading={this.saveReading}
         />
 
 
