@@ -2,7 +2,7 @@ const allNewsCategories = [
     'arts', 
     'automobiles', 
     'books',
-    'business',
+    // 'business',
     // 'fashion',
     // 'food', 
     // 'health', 
