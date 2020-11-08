@@ -4,13 +4,15 @@ import { getTopStories } from '../../apiCalls'
 import allNewsCategories from '../../data/data'
 import { HomePage } from '../HomePage/HomePage'
 import { LaterReads } from '../LaterReads/LaterReads'
-import { Switch, Route, Link} from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import { NavBar } from '../NavBar/NavBar'
 
 import moment from 'moment'
+import { FaCreativeCommonsPd } from 'react-icons/fa';
 export class App extends Component {
   constructor(){
     super()
-    
+  
     this.state = {
       newsData: {},
       allNewsCategories: allNewsCategories,
@@ -23,8 +25,32 @@ export class App extends Component {
         category:'',
         results:[],
         searchHistory:[]
-      },
+      }
     }
+  }
+
+  searchForStoriesByDate = (date) => {
+    if(typeof date !== 'string' || date.length !== 10){
+      return 
+    }
+    if (date.includes('/')) {
+      date =  date.split('/').join('-')
+    }
+      const copyOfNewsData = {...this.state.newsData}
+      const matchingStories = allNewsCategories.reduce((acc, curr) => {
+        copyOfNewsData[curr].results.forEach(story => {
+          if (date === moment(story.created_date).format('MM-DD-YYYY')) {
+            acc.results.push(story)
+          }
+        })
+        return acc
+      }, {results: []})
+
+      if (matchingStories.results.length === 0) {
+        return console.log('no matching stories')
+      }
+      const newsFound = this.updateHomePage(matchingStories.results)
+      this.setState({currentCategory: newsFound});
   }
 
   componentDidMount =  async () => {
@@ -35,7 +61,7 @@ export class App extends Component {
   retriveFromLocalStorage = () => {
     const data = localStorage.getItem('laterReadings')
     
-    this.setState({laterReadings: JSON.parse(data)})
+    this.setState({laterReadings: JSON.parse(data) || []})
   }
 
   saveToLocalStorage = () => {
@@ -78,8 +104,11 @@ export class App extends Component {
     const newsFound = this.updateHomePage(stories)
     
     this.setState(state => ({
+      error:'',
       currentCategory: newsFound,
       searchedItems: {...state.searchedItems,
+        query:'',
+        category:'',
         results:  stories,
         searchHistory: [...state.searchedItems.searchHistory, stories ]
       }
@@ -143,6 +172,9 @@ export class App extends Component {
     if (!this.state.laterReadings.includes(savedElement)) {
       this.setState({laterReadings: [...this.state.laterReadings, savedElement]})
     }
+    setTimeout(() => {
+      this.saveToLocalStorage()
+    }, 100);
   }
   
   generateRandomCategory =  () => {
@@ -195,77 +227,27 @@ export class App extends Component {
     return (
       <div className="App">
       
-        <nav className="nav-bar">
-          <div className="day-information">
-              <h5 className="app-title">{moment().format('LLL')}</h5>
-            </div>
-            <div className="title-container">
-              <h1 className="app-title">CommuniK</h1>
-              <h3 className="sub-title">Top stories Only</h3>
-            </div>
-            <div className="control-container">
+        <div className="app-title-container">
+          <div className="title-container">
+            <h1 className="app-title">CommuniK</h1>
+            <h3 className="sub-title">Headlines</h3>
           </div>
-        </nav>
+        </div>
 
-        <section className="banner">
-          <div className="banner-container">
-          <div className="search-container">
-                <div className="inner-search-container">
-                  <select 
-                    value={this.state.searchedItems.category}
-                    onChange={(event) => {this.updateSearchCategory(event)}}>
-                    <option 
-                      placeholder='category'
-                      value=''>categories</option>
-                      {this.injectOptionsCategories()}
-                  </select>
-                  <input 
-                    value= {this.state.searchedItems.query}
-                    onChange={this.updateSearchQuery}
-                    placeholder='search'
-                    name='searchedItem'
-                    type="text" 
-                    className="search-bar"/>
-                    <i className="fas fa-search"
-                      onClick={this.findUserStory}
-                    ></i>
-                </div>
-                {this.state.error && <p className="error-message">{this.state.error}</p>}
-            </div>
-            <div className="interactive-controls">
-              <Link
-                to='/home'>
-                <button 
-                className="app-title">
-                home
-                </button>
-              </Link>
-
-              <Link
-                to='/my_reads'>
-                <button 
-                onClick={this.saveToLocalStorage}
-                className="app-title">My reads</button>
-              </Link>
-
-              {this.state.laterReadings.length > 0 && <Link
-                to='/my_reads'>
-                <button 
-                onClick={this.deleteAllSavedStories}
-                className="app-title">Delete All</button>
-              </Link>}
-
-              <Link to='/home'>
-                <button 
-                  onClick={this.generateRandomCategory}
-                  className="app-title">randomize</button>
-              </Link>
-            </div>
-
-
-
-          </div>
-        </section>
+        <NavBar 
+          updateSearchCategory={this.updateSearchCategory}
+          searchedItems={this.state.searchedItems}
+          injectOptionsCategories={this.injectOptionsCategories}
+          updateSearchQuery={this.updateSearchQuery}
+          laterReadings={this.state.laterReadings}
+          findUserStory={this.findUserStory}
+          error={this.state.error }
+          saveToLocalStorage={this.saveToLocalStorage}
+          deleteAllSavedStories={this.deleteAllSavedStories}
+          generateRandomCategory={this.generateRandomCategory}
+          userDate={this.state.userDate}
+          searchForStoriesByDate={this.searchForStoriesByDate}
+        />
 
         <Switch>
             <Route 
