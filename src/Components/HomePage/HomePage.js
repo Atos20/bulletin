@@ -26,7 +26,6 @@ export const HomePage = (props) => {
         return (
           
           <article className="article-container">
-            {/* <img className="cover-imge" src="https://images.unsplash.com/photo-1508612761958-e931d843bdd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80" alt=""/> */}
             <h1 className="welcome">Welcome to Communik</h1>
           </article>
         )
@@ -39,8 +38,7 @@ export const HomePage = (props) => {
             <h2 className="article-title">{story.title}</h2>
 
             <div
-              className="add-icon">
-              {/* <h5 className="more">more</h5> */}
+              className="nyt-link-container">
               <a className="more" href={story.url} >more</a>
                 <i 
                 id={`${props.currentCategory.newsType}#${story.created_date}`}
@@ -49,8 +47,11 @@ export const HomePage = (props) => {
             </div>
 
             <div className="image-container">
-              <img id={story.created_date} className="article-img" src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} alt={"image no available"}/>
-                {/* <img id='' className="article-img" src={story.multimedia[0].url} alt=''/> */}
+              <img 
+                id={story.created_date} 
+                className="article-img" 
+                src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} 
+                alt={story.multimedia ? story.multimedia[0].caption : "image not available"}/>
             </div>
 
             <div className="additional-info">
