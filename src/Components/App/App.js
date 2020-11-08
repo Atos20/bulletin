@@ -35,7 +35,7 @@ export class App extends Component {
   retriveFromLocalStorage = () => {
     const data = localStorage.getItem('laterReadings')
     
-    this.setState({laterReadings: JSON.parse(data)})
+    this.setState({laterReadings: JSON.parse(data) || []})
   }
 
   saveToLocalStorage = () => {
@@ -143,6 +143,9 @@ export class App extends Component {
     if (!this.state.laterReadings.includes(savedElement)) {
       this.setState({laterReadings: [...this.state.laterReadings, savedElement]})
     }
+    setTimeout(() => {
+      this.saveToLocalStorage()
+    }, 100);
   }
   
   generateRandomCategory =  () => {
