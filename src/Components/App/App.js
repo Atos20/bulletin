@@ -45,9 +45,12 @@ export class App extends Component {
         })
         return acc
       }, {results: []})
+
       if (matchingStories.results.length === 0) {
         return console.log('no matching stories')
       }
+      const newsFound = this.updateHomePage(matchingStories.results)
+      this.setState({currentCategory: newsFound});
   }
 
   componentDidMount =  async () => {
