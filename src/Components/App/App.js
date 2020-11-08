@@ -30,8 +30,8 @@ export class App extends Component {
   }
 
   searchForStoriesByDate = (date) => {
-    if(typeof date !== 'string' || date === '' || date.length !== 10){
-      return console.log('error line 34')
+    if(typeof date !== 'string' || date.length !== 10){
+      return 
     }
     if (date.includes('/')) {
       date =  date.split('/').join('-')
