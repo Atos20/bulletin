@@ -8,10 +8,11 @@ import { Switch, Route } from "react-router-dom";
 import { NavBar } from '../NavBar/NavBar'
 
 import moment from 'moment'
+import { FaCreativeCommonsPd } from 'react-icons/fa';
 export class App extends Component {
   constructor(){
     super()
-    
+  
     this.state = {
       newsData: {},
       allNewsCategories: allNewsCategories,
@@ -24,8 +25,29 @@ export class App extends Component {
         category:'',
         results:[],
         searchHistory:[]
-      },
+      }
     }
+  }
+
+  searchForStoriesByDate = (date) => {
+    if(typeof date !== 'string' || date === '' || date.length !== 10){
+      return console.log('error line 34')
+    }
+    if (date.includes('/')) {
+      date =  date.split('/').join('-')
+    }
+      const copyOfNewsData = {...this.state.newsData}
+      const matchingStories = allNewsCategories.reduce((acc, curr) => {
+        copyOfNewsData[curr].results.forEach(story => {
+          if (date === moment(story.created_date).format('MM-DD-YYYY')) {
+            acc.results.push(story)
+          }
+        })
+        return acc
+      }, {results: []})
+      if (matchingStories.results.length === 0) {
+        return console.log('no matching stories')
+      }
   }
 
   componentDidMount =  async () => {
@@ -79,8 +101,11 @@ export class App extends Component {
     const newsFound = this.updateHomePage(stories)
     
     this.setState(state => ({
+      error:'',
       currentCategory: newsFound,
       searchedItems: {...state.searchedItems,
+        query:'',
+        category:'',
         results:  stories,
         searchHistory: [...state.searchedItems.searchHistory, stories ]
       }
@@ -217,6 +242,8 @@ export class App extends Component {
           saveToLocalStorage={this.saveToLocalStorage}
           deleteAllSavedStories={this.deleteAllSavedStories}
           generateRandomCategory={this.generateRandomCategory}
+          userDate={this.state.userDate}
+          searchForStoriesByDate={this.searchForStoriesByDate}
         />
 
         <Switch>
