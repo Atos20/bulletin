@@ -21,12 +21,10 @@ export const HomePage = (props) => {
         )
     })
 
-
-
     const handleCurrentCategory = () => {
       if (!props.currentCategory.topStories) {
         return (
-          
+
           <article className="article-container">
             <h1 className="welcome">Welcome to Communik</h1>
           </article>
@@ -57,7 +55,6 @@ export const HomePage = (props) => {
             </div>
 
             <div className="additional-info">
-              {/* <p className="info published_date">Published date {moment(story.published_date).format('LLLL')}</p> */}
               <p className="info updated_date">Updated date {moment(story.updated_date).format('LLLL')}</p>
             </div>
             <div className="by-line-container">
