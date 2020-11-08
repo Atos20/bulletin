@@ -17,7 +17,6 @@ export class NavBar extends Component {
   findStories = () => {
     const copyOfDate = this.state.userDate
     this.props.searchForStoriesByDate(copyOfDate)
-    this.setState({userDate: ''})
   }
 
   updateDate = (event) => {
