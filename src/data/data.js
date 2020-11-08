@@ -1,8 +1,8 @@
 const allNewsCategories = [
     'arts', 
     'automobiles', 
-    // 'books',
-    // 'business',
+    'books',
+    'business',
     // 'fashion',
     // 'food', 
     // 'health', 
