@@ -7,10 +7,9 @@ export const LaterReads = (props) =>{
         if(props.laterReadings.length === 0){
             return <h1 className="sorry">Sorry but there are no readings</h1>
         }
-        
-       return props.laterReadings.map(story => {
+       return props.laterReadings.map((story, i) => {
            return(
-            <article className="story-container">
+            <article key={i} className="story-container">
                 <div className="article-title-container">
 
                 <h2 className="article-title">{story.title}</h2>
