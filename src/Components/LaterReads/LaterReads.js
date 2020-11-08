@@ -19,7 +19,11 @@ export const LaterReads = (props) =>{
                 
                 <div className="image-container">
                   {/* <img id='' className="article-img" src={story.multimedia[0].url} alt=''/> */}
-                  <img id={story.created_date} className="article-img" src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} alt={"image no available"}/>
+                  <img 
+                    id={story.created_date} 
+                    className="article-img" 
+                    src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} 
+                    alt={story.multimedia ? story.multimedia[0].caption : "image not available"}/>
                 </div>
 
                 <div className="additional-info">
@@ -32,9 +36,8 @@ export const LaterReads = (props) =>{
                 <div className="by-line-container">
                     <p className="by-line-content">{story.byline}</p>
                 </div>
-                <div className="add-icon">
-                    <h6 className="listen-here">liste-here</h6>
-                    <a href={story.url} className="link"></a>
+                <div className="nyt-link-container">
+                    <a className="more" href={story.url} >find more</a>
                 </div>
 
                 <div
