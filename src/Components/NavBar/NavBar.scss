@@ -1,0 +1,46 @@
+
+.nav-bar{
+    height: 12vh;
+    background-color: bisque;
+
+    .nav-bar-container{
+        height: 100%; 
+        margin: 0% 0% 0% 0%;
+        /* padding: 1%; */
+        background-color: blueviolet;
+        display: inline-flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        
+        .interactive-controls{
+            background-color: cyan;
+            width: 30%;
+            height: 10vh;
+            color: darkgrey;
+
+        }
+
+        .search-container{
+            background-color: darkcyan;
+            margin: 0%;
+            width: 40%;
+            height: 10vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .inner-search-container{
+                padding:1%;
+                
+                .search-bar{
+                    width: 15vw;
+
+                }
+            }
+            .error-message{
+                margin: 0%;
+            }
+        }
+    }
+}
