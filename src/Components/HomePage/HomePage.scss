@@ -1,10 +1,10 @@
 .homepage{
     background-color: aliceblue;
-    height: 300vh;
+    height: 200vh;
 
     .categories-container{
         background-color: rgb(249, 247, 245);
-        height: 50%;
+        height: 100%;
         display: grid;
         grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(10, 1fr);
@@ -91,7 +91,7 @@
 
        
 
-            .add-icon{
+            .nyt-link-container{
                 color: rgb(79, 98, 174);
                 font-size: 2em;
                 grid-area: 2/ 5 / 4 / 6;
