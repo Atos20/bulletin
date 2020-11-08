@@ -1,4 +1,15 @@
+@import '../../styles/variables.scss';
+
+html{
+    background-color: #fafcc2;
+}
+
+*{
+    box-sizing: border-box;   
+}
+
 .App {
+  background-color: white;
   margin: 0% 17% 0% 17%;
   text-align: center;
 
@@ -14,10 +25,16 @@
         grid-area: 2/ 3/ 4/ 7;
         justify-self: center;
         align-items: center;
+        font-family: $title;
+
 
         .app-title{
-            font-size: 4em;
-            margin: 2%;
+            font-size: 5em;
+            margin: 1%;
+
+            .sub-title{
+                font-size: 3em;
+            }
         }
     }
   }
