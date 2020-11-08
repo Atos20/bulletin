@@ -26,7 +26,8 @@ export const HomePage = (props) => {
         return (
           
           <article className="article-container">
-            <img className="cover-imge" src="https://images.unsplash.com/photo-1508612761958-e931d843bdd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80" alt=""/>
+            {/* <img className="cover-imge" src="https://images.unsplash.com/photo-1508612761958-e931d843bdd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80" alt=""/> */}
+            <h1 className="welcome">Welcome to Communik</h1>
           </article>
         )
       }
@@ -36,20 +37,25 @@ export const HomePage = (props) => {
             key={i}
             className="article-container">
             <h2 className="article-title">{story.title}</h2>
-              <div
-                className="add-icon">
-                  <i 
-                  id={`${props.currentCategory.dataType}#${story.created_date}`}
-                  onClick={(event) => props.saveReading(event)}
-                  className="far fa-bookmark"></i>
-              </div>
-            <img id={story.created_date} className="article-img" src={story.multimedia[0].url} alt={story.multimedia[0].caption}/>
-            <div className="additional-info">
-              <p className="info published_date">Published date {moment(story.published_date).format('LLLL')}</p>
-              <p className="info updated_date">Updated date {moment(story.updated_date).format('LLLL')}</p>
+
+            <div
+              className="add-icon">
+              {/* <h5 className="more">more</h5> */}
+              <a className="more" href={story.url} >more</a>
+                <i 
+                id={`${props.currentCategory.newsType}#${story.created_date}`}
+                onClick={(event) => props.saveReading(event)}
+                className={!story.saved ? "far fa-bookmark" :"fas fa-bookmark" }></i>
             </div>
-            <div className="abstract-container">
-              <p className="abstract-content">{story.abstract}</p>
+
+            <div className="image-container">
+              <img id={story.created_date} className="article-img" src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} alt={"image no available"}/>
+                {/* <img id='' className="article-img" src={story.multimedia[0].url} alt=''/> */}
+            </div>
+
+            <div className="additional-info">
+              {/* <p className="info published_date">Published date {moment(story.published_date).format('LLLL')}</p> */}
+              <p className="info updated_date">Updated date {moment(story.updated_date).format('LLLL')}</p>
             </div>
             <div className="by-line-container">
               <p className="by-line-content">{story.byline}</p>
