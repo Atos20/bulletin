@@ -21,6 +21,8 @@ export const HomePage = (props) => {
         )
     })
 
+
+
     const handleCurrentCategory = () => {
       if (!props.currentCategory.topStories) {
         return (
