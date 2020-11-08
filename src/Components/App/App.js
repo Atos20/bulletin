@@ -27,6 +27,22 @@ export class App extends Component {
     }
   }
 
+  componentDidMount =  async () => {
+    await this.requestData()
+    this.retriveFromLocalStorage()
+  }
+  
+  retriveFromLocalStorage = () => {
+    const data = localStorage.getItem('laterReadings')
+    
+    this.setState({laterReadings: JSON.parse(data)})
+  }
+
+  saveToLocalStorage = () => {
+    const copyOfLaterReadings = [...this.state.laterReadings]
+    const save = localStorage.setItem('laterReadings',JSON.stringify(copyOfLaterReadings))
+  }
+
   updateHomePage =  (news) => {
     return news.reduce((data, story) =>{
       data.section= story.section
@@ -113,6 +129,7 @@ export class App extends Component {
       copyOfSavedStories.splice(index, 1)
       this.setState({ laterReadings: copyOfSavedStories})
     }
+    this.saveToLocalStorage()
   } 
   
   saveReading = (event) => {
@@ -126,10 +143,6 @@ export class App extends Component {
     if (!this.state.laterReadings.includes(savedElement)) {
       this.setState({laterReadings: [...this.state.laterReadings, savedElement]})
     }
-  }
-  
-  componentDidMount =  async () => {
-    await this.requestData()
   }
   
   generateRandomCategory =  () => {
@@ -148,7 +161,6 @@ export class App extends Component {
       data.topStories.forEach(story =>story.saved= false)
       return data
     }, {})
-    console.log(newData)
     this.setState(prevState => ({
       currentCategory: {...prevState.currentCategory = newData}
     }))
@@ -232,6 +244,7 @@ export class App extends Component {
               <Link
                 to='/my_reads'>
                 <button 
+                onClick={this.saveToLocalStorage}
                 className="app-title">My reads</button>
               </Link>
 

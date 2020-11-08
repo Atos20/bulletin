@@ -3,7 +3,6 @@ import './LaterReads.scss';
 import moment from 'moment';
 
 export const LaterReads = (props) =>{
-    console.log(props)
     const injectUserSaves = () => {
         if(props.laterReadings.length === 0){
             return <h1 className="sorry">Sorry but there are no readings</h1>
