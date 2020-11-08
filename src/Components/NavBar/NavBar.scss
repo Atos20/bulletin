@@ -1,46 +1,100 @@
-
+@import '../../styles/variables.scss';
+/*
+$sub_title: 'Bellefair', serif;
+$content_title: 'Montserrat Subrayada', sans-serif;
+$content:'Raleway', sans-serif;
+*/
 .nav-bar{
-    height: 12vh;
-    background-color: bisque;
+    height: 15vh;
+    border-top: 3px solid grey;
 
-    .nav-bar-container{
+    .nav-inner-container{
         height: 100%; 
         margin: 0% 0% 0% 0%;
-        /* padding: 1%; */
-        background-color: blueviolet;
         display: inline-flex;
         width: 100%;
         justify-content: space-around;
         align-items: center;
-        
-        .interactive-controls{
-            background-color: cyan;
-            width: 30%;
-            height: 10vh;
-            color: darkgrey;
 
-        }
 
         .search-container{
-            background-color: darkcyan;
             margin: 0%;
-            width: 40%;
+            width: 45%;
             height: 10vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            border-bottom: 3px solid grey;
 
             .inner-search-container{
-                padding:1%;
+                padding: 0%;
                 
-                .search-bar{
-                    width: 15vw;
+                .select{
+                    outline: none;
+                    text-decoration:none;
+                    width: 30%;
+                    background-color: transparent;
+                    border: none;
+                    margin: 1%;
+                    font-family: $content_title;
+                }
 
+                .search-bar{
+                    width: 16vw;
+                    margin: 0%;
+                    border: none;
+                    border-bottom: 1px solid grey;
+                    outline: none;
+                    text-decoration:none;
+                    margin-right: -20px;
+                    padding-left: 3%;
+                    font-family: $content;
+                    font-size: 20px;
                 }
             }
+
             .error-message{
+                color: red;
                 margin: 0%;
             }
+        }
+
+        .controls{
+            width: 45%;
+            height: 10vh;
+            color: darkgrey;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 3px solid grey;
+
+            .control{
+                width: 100%;
+                margin: 2%;
+
+                .button{
+                    display:inline-block;
+                    padding: 1%;
+                    margin: 1%;
+                    border-radius:0.2em;
+                    box-sizing: border-box;
+                    text-decoration:none;
+                    font-family: $content;
+                    font-weight:800;
+                    color:black;
+                    background-color:#ecedf0;
+                    box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+                    text-align:center;
+                    position:relative;
+                    width: 20%;
+                    border: none;
+                }
+            }
+
+
+
+
+
         }
     }
 }
