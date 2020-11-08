@@ -19,19 +19,24 @@
             background-color: cornsilk;
             grid-area: 1/ span 12;
 
-       
-
-            .add-icon{
-                color: blue;
-                font-size: 2em;
+            .nyt-link-container{
+                color: rgb(79, 98, 174);
+                font-size: 1em;
                 grid-area: 6/ 7 / 7 / 9;
-                margin: 1%;
-                width: 100%;
+                text-decoration:none;
+                font-family:Arial;
+                margin: 4%;
 
-                .listen-here{
-                    font-size: .5em;
-                    margin: 5%;
+                .more{
+                    text-decoration: none;
+                    color: rgb(79, 98, 174);
+                    margin: 1%;
                 }
+
+                .more:hover{
+                    border-bottom: 2px solid black;
+                }
+                
             }
 
             .add-icon:hover{
@@ -49,6 +54,7 @@
                 grid-area: 1/ 5 / 3 / 9;
                 height: 100%;
                 margin: 2%;
+
                 .article-title{
                     font-size: 1em;
                 }
@@ -96,7 +102,6 @@
             .by-line-container{
                 margin: 1%;
                 font-size: .7em;
-
                 grid-area: 6/ 5 / 7 / 7;
             }
 
