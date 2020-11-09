@@ -17,6 +17,7 @@ export const News = (props) => {
                 
                 <div className="image-container">
                   <img 
+                    data-testid='saved-image'
                     id={story.created_date} 
                     className="article-img" 
                     src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} 
@@ -46,6 +47,7 @@ export const News = (props) => {
                 <div
                     className="delete-icon">
                     <i 
+                    data-testid='delete icon'
                     id={`${story.newsType}#${story.created_date}`}
                     onClick={(event) => props.deleteSavedReading(event)}
                     className="fas fa-times-circle"></i>
