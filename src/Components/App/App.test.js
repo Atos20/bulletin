@@ -320,23 +320,26 @@ describe("App", () => {
       expect(myReadsButton).toBeInTheDocument();
       
       userEvent.click(automobileCategory);
-
-      const saveReadingButton =  await waitFor(() =>screen.getByTestId('read for later icon'));
+      
+      const saveReadingButton =  await waitFor(() => screen.getByTestId('read for later icon'));
       expect(saveReadingButton).toBeInTheDocument();
-  
       userEvent.click(saveReadingButton);
+
+      
       userEvent.click(myReadsButton);
       
+      const savedMockArticleImage =  await waitFor(() => screen.getAllByTestId('saved-image-container'));
+      const savedMockAbstract = await waitFor(() =>screen.getAllByText('Mock abstract'));
+      expect(savedMockArticleImage).toBeInTheDocument();
+      expect(savedMockAbstract).toBeInTheDocument();
+
       const deleteReadingsButton =  await waitFor(() => screen.getByRole('button', { name: /delete all/i }));
       expect(deleteReadingsButton).toBeInTheDocument();
       
-      const savedMockArticleImage = screen.getAllByTestId('saved-image');
-      const savedMockAbstract = screen.getAllByText('Mock abstract');
-      
       userEvent.click(deleteReadingsButton);
 
-      expect(savedMockArticleImage).not.toBeInTheDocument();
-      expect(savedMockAbstract ).not.toBeInTheDocument();
+      expect(savedMockArticleImage).toBeNull();
+      expect(savedMockAbstract ).toBeNull();
 
       screen.debug()
 

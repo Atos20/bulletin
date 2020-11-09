@@ -15,7 +15,7 @@ export const News = (props) => {
                 <h2 className="section-title">{story.title}</h2>
                 </div>
                 
-                <div className="image-container">
+                <div data-testid='saved-image-container' className="image-container">
                   <img 
                     data-testid='saved-image'
                     id={story.created_date} 
