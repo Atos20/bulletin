@@ -9,9 +9,9 @@ jest.mock('../../apiCalls.js');
 import moment from 'moment';
 
 describe("App", () => {
+  
   let mockCategories,
   mockNewsData
-
 
   beforeEach(() => {
     mockCategories = ['politics', 'sports', 'movies', 't-magazine', 'sundayreview']
@@ -53,11 +53,9 @@ describe("App", () => {
           url:"https://www.nytimes.com/2020/11/08/arts/television/alex-trebek-dead.html"
         }],
         section:"Arts",
-        status:"OK"
-
+        status:"OK"      
       },
       politics:{
-
       }
     });
   })
@@ -76,7 +74,7 @@ describe("App", () => {
         <App />
       </MemoryRouter>
     );
-    
+
     const appTitle = screen.getByText('CommuniK');
     const appSubtitle = screen.getByRole('heading', { name: /headlines/i });
     const selectCategory = screen.getByTestId('select-multiple')
@@ -94,8 +92,7 @@ describe("App", () => {
   
     render(
       <MemoryRouter>
-        <App 
-        />
+        <App/>
       </MemoryRouter>
     );
 
@@ -121,14 +118,14 @@ describe("App", () => {
     expect(optionOne).toBeInTheDocument(); 
     expect(optionTwo).toBeInTheDocument(); 
     expect(optionThree).toBeInTheDocument(); 
+
   });
 
   it('should render all the buttons to bavigate the application', () => {
 
     render(
       <MemoryRouter>
-        <App 
-        />
+        <App/>
       </MemoryRouter>
     );
 
@@ -144,5 +141,7 @@ describe("App", () => {
     expect(searchButton).toBeInTheDocument();
     expect(searchByDate).toBeInTheDocument();
   });
+
+
 });
 
