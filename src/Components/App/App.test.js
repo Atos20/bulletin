@@ -6,10 +6,12 @@ import "@testing-library/jest-dom";
 import { App } from "./App";
 import { getTopStories } from '../../apiCalls.js'
 jest.mock('../../apiCalls.js');
+import moment from 'moment';
 
 describe("App", () => {
   let mockCategories,
   mockNewsData
+
 
   beforeEach(() => {
     mockCategories = ['politics', 'sports', 'movies', 't-magazine', 'sundayreview']
@@ -68,28 +70,27 @@ describe("App", () => {
     );
   });
     
-    it('should display all intial elements', async() => {
-
-      render(
-        <MemoryRouter>
-          <App />
-        </MemoryRouter>
-      );
-    const appTitle = screen.getByRole('heading', { name: /communik/i });
+  it('should display all intial elements', async() => {
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    
+    const appTitle = screen.getByText('CommuniK');
     const appSubtitle = screen.getByRole('heading', { name: /headlines/i });
-    const selectCategory = screen.getByRole('combobox');
-
-
-
+    const selectCategory = screen.getByTestId('select-multiple')
+    const welcomingMessage = screen.getByText('Welcome to Communik');
+    const todaysDate = screen.getByText(moment().format('LLL'))
 
     expect(appTitle).toBeInTheDocument();
     expect(appSubtitle).toBeInTheDocument();
     expect(selectCategory).toBeInTheDocument();
-
-
+    expect(welcomingMessage).toBeInTheDocument();
+    expect(todaysDate).toBeInTheDocument();
   });
 
-  it('should render all news categories when the page loads',() => {
+  it('should be able to fillout the form and find stories that meet the criteria',() => {
   
     render(
       <MemoryRouter>
@@ -101,55 +102,47 @@ describe("App", () => {
     const artsCategory =  screen.getByText('arts')
     const automobileCategory = screen.getByText('automobiles')
     const booksCategory = screen.getByText('books')
-    // const politicsCategory =  screen.getByText('politics')
-    // const sportsCategory =  screen.getByText('sports')
-    // const moviesCategory =  screen.getByText('movies')
-    // const fashionCategory = screen.getByText('fashion')
-    // const foodCategory = screen.getByText('food')
-    // const technologyCategory = screen.getByText('technology')
-    // const travelCategory = screen.getByText('travel')
-    // const worldCategory = screen.getByText('world')
-    // const businessCategory = screen.getByText('business'); 
-    // const healthCategory = screen.getByText('health');
-    // const insiderCategory = screen.getByText('insider');
-    // const magazineCategory = screen.getByText('magazine');
-    // const nyregionCategory= screen.getByText('nyregion');
-    // const obituariesCategory = screen.getByText('obituaries');
-    // const opinionCategory = screen.getByText('opinion');
-    // const realstateCategory = screen.getByText('realestate');
-    // const scienceCategory = screen.getByText('science');
-    // const sundayreviewCategory = screen.getByText('sundayreview');
-    // const theaterCategory = screen.getByText('theater');
-    // const upshotCategory = screen.getByText('upshot');
-    // const usCategory = screen.getByText('us');
-
+    const selectCategory = screen.getByTestId('select-multiple')
+    const searchBar = screen.getByPlaceholderText('search')
+    const searchIcon = screen.getByTestId('search-icon')
+    
     expect(artsCategory).toBeInTheDocument();
     expect(automobileCategory).toBeInTheDocument();
     expect(booksCategory).toBeInTheDocument();
-    // expect(moviesCategory).toBeInTheDocument()
-    // expect(sportsCategory).toBeInTheDocument()
-    // expect(politicsCategory).toBeInTheDocument()
-    // expect(fashionCategory).toBeInTheDocument();
-    // expect(foodCategory).toBeInTheDocument();
-    // expect(technologyCategory).toBeInTheDocument();
-    // expect(travelCategory).toBeInTheDocument();
-    // expect(worldCategory).toBeInTheDocument();
-    // expect(businessCategory).toBeInTheDocument();  
-    // expect(healthCategory).toBeInTheDocument();  
-    // expect(insiderCategory).toBeInTheDocument();  
-    // expect(magazineCategory).toBeInTheDocument();  
-    // expect(nyregionCategory).toBeInTheDocument();  
-    // expect(obituariesCategory).toBeInTheDocument();  
-    // expect(opinionCategory).toBeInTheDocument();  
-    // expect(realstateCategory).toBeInTheDocument();  
-    // expect(scienceCategory).toBeInTheDocument();  
-    // expect(sundayreviewCategory).toBeInTheDocument();
-    // expect(theaterCategory).toBeInTheDocument();
-    // expect(upshotCategory).toBeInTheDocument();
-    // expect(usCategory).toBeInTheDocument();
+    expect(selectCategory).toBeInTheDocument();
+    expect(searchBar).toBeInTheDocument();
+    expect(searchIcon).toBeInTheDocument();
 
+    userEvent.selectOptions(selectCategory, [ 'arts','automobiles','books']);
+    const optionOne = screen.getByText('arts');
+    const optionTwo = screen.getByText('automobiles');
+    const optionThree = screen.getByText('books');
 
+    expect(optionOne).toBeInTheDocument(); 
+    expect(optionTwo).toBeInTheDocument(); 
+    expect(optionThree).toBeInTheDocument(); 
+  });
 
+  it('should render all the buttons to bavigate the application', () => {
+
+    render(
+      <MemoryRouter>
+        <App 
+        />
+      </MemoryRouter>
+    );
+
+    const randomizeButton =  screen.getByRole('button', { name: /randomize/i })
+    const homeButton = screen.getByRole('button', { name: /my reads/i })
+    const myReadsButton = screen.getByRole('button', { name: /home/i })
+    const searchButton = screen.getByRole('button', { name: /search/i })
+    const searchByDate = screen.getByPlaceholderText(moment().format('MM-DD-YYYY'))
+
+    expect(randomizeButton).toBeInTheDocument();
+    expect(homeButton).toBeInTheDocument();
+    expect(myReadsButton).toBeInTheDocument();
+    expect(searchButton).toBeInTheDocument();
+    expect(searchByDate).toBeInTheDocument();
   });
 });
 
