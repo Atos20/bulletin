@@ -39,15 +39,20 @@ export const HomePage = (props) => {
 
             <div
               className="nyt-link-container">
-              <a className="more" href={story.url} >more</a>
+              <a 
+                data-testid="content-link"
+                className="more" 
+                href={story.url} >more</a>
                 <i 
                 id={`${props.currentCategory.newsType}#${story.created_date}`}
+                data-testid="read for later icon"
                 onClick={(event) => props.saveReading(event)}
                 className={!story.saved ? "far fa-bookmark" :"fas fa-bookmark" }></i>
             </div>
 
             <div className="image-container">
               <img 
+                data-testid="article img"
                 id={story.created_date} 
                 className="article-img" 
                 src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} 
