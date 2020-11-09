@@ -75,8 +75,11 @@ export class App extends Component {
       data.topStories.push(story)
       data.last_updated= story.updated_date
       data.id= Date.now()
-      data.newsType= 'Your Search'
-    return data 
+      data.topStories.forEach(story =>
+        story.saved= false,
+        data.newsType= story.section
+        )
+      return data
     },{topStories: []})
   }
 
@@ -84,25 +87,20 @@ export class App extends Component {
     const { category, query } = this.state.searchedItems
     if (!query && !category) {
       return this.setState({error: 'please choose a criteria'})
-      
     }
     if (!category){
       return this.setState({error: 'you must select a category'})
-      
     } 
     if (!query) {
       return this.setState({error: 'what do you want to look for?'})
-      
     }
     const stories = this.state.newsData[category].results.filter(story => {
       return story.title.toLowerCase().includes(query)
     })
     if (stories.length === 0 ) {
       return this.setState({error: 'no items found'})
-      
     }
     const newsFound = this.updateHomePage(stories)
-    
     this.setState(state => ({
       error:'',
       currentCategory: newsFound,
@@ -136,8 +134,7 @@ export class App extends Component {
       return(<option 
         key={i}
         value={category}
-        id={category}
-        name={category}>
+        id={category}>
         {category}</option>)
     })
   }
@@ -268,6 +265,7 @@ export class App extends Component {
                 <LaterReads
                   laterReadings={this.state.laterReadings}
                   deleteSavedReading={this.deleteSavedReading}
+                  saveReading={this.saveReading}
                 />
             </Route>
             
