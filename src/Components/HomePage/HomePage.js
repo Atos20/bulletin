@@ -11,6 +11,7 @@ export const HomePage = (props) => {
             onClick={props.selectCategory}
             className="category">
               <h3 
+                data-testid={tag}
                 id={tag}
                 onClick={props.selectCategory}
                 className="category-name">
