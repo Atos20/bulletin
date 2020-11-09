@@ -261,7 +261,7 @@ describe("App", () => {
     const savedCategoryTitle = await waitFor(() => screen.getByText('Your reads'));
     const savedMockArticleTitle = await waitFor(() => screen.getByText('Mock article title'));
     const savedMockAbstract = await waitFor(() => screen.getByText('Mock abstract'));
-    const savedMockArticleImg = await waitFor(() => screen.getByTestId('saved-image'));
+    const savedMockArticleImg = await waitFor(() => screen.getByTestId('saved-image2020-11-08T12:41:08-05:00'));
     const savedMockPublusedDate = await waitFor(() => screen.getByText('Published date'));
     const savedMockArticleUpdatedDate = await waitFor(() => screen.getByText('Sunday, November 8, 2020 4:44 PM'));
     const savedMockAuthor = await waitFor(() => screen.getByText('Mock author'));
@@ -328,8 +328,8 @@ describe("App", () => {
       
       userEvent.click(myReadsButton);
       
-      const savedMockArticleImage =  await waitFor(() => screen.getAllByTestId('saved-image-container'));
-      const savedMockAbstract = await waitFor(() =>screen.getAllByText('Mock abstract'));
+      const savedMockArticleImage =  await waitFor(() => screen.getByTestId('saved-image2020-11-08T12:41:08-05:00'));
+      const savedMockAbstract = await waitFor(() =>screen.getByText('Mock abstract'));
       expect(savedMockArticleImage).toBeInTheDocument();
       expect(savedMockAbstract).toBeInTheDocument();
 
