@@ -1,6 +1,8 @@
-import React from 'react'
-import './HomePage.scss'
-import moment from 'moment'
+import React from 'react';
+import './HomePage.scss';
+import moment from 'moment';
+import PropTypes from 'prop-types';
+
 
 export const HomePage = (props) => {
     const tags = Object.keys(props.newsData).map((tag, i) => {
@@ -88,4 +90,11 @@ export const HomePage = (props) => {
           </section>
         </section>
     )
+}
+
+HomePage.propTypes = {
+  newsData: PropTypes.object,
+  selectCategory: PropTypes.func.isRequired,
+  currentCategory: PropTypes.object,
+  saveReading: PropTypes.func.isRequired
 }
