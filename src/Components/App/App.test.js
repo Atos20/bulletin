@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { getByTestId, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
@@ -71,7 +71,7 @@ describe("App", () => {
   it('should start with default state', () => {
       const defaultApp = new App()
       expect(defaultApp.state.newsData).toStrictEqual({})
-      expect(defaultApp.state.allNewsCategories.length).toStrictEqual(26)
+      expect(defaultApp.state.allNewsCategories.length).toStrictEqual(3)
       expect(defaultApp.state.selectedCategories).toStrictEqual([])
       expect(defaultApp.state. currentCategory).toStrictEqual({})
       expect(defaultApp.state.laterReadings).toStrictEqual([])
@@ -157,7 +157,7 @@ describe("App", () => {
     expect(searchByDate).toBeInTheDocument();
   });
 
-  it('the user should be able to select a category and then see the top stories for that category', () => {
+  it('it should render news options to choose from', async()=> {
 
     render(
       <MemoryRouter>
@@ -165,7 +165,27 @@ describe("App", () => {
       </MemoryRouter>
     );
 
-      screen.debug()
+    const artsCategory = await waitFor(() => screen.getByTestId('arts'));
+    const automobilesCategory = await waitFor(() => screen.getByTestId('automobiles'));
+    const booksCategory= await waitFor(() => screen.getByTestId('books'));
+
+    expect(artsCategory).toBeInTheDocument();
+    expect(automobilesCategory ).toBeInTheDocument();
+    expect(booksCategory).toBeInTheDocument();
+  });
+
+  it('the user should be able to select the arts category and' +
+     'then see thetops stories for the selected category', async() => {
+
+    render(
+      <MemoryRouter>
+        <App/>
+      </MemoryRouter>
+    );
+
+    const artsCategory = await waitFor(() => screen.getByTestId('arts'));
+    expect(artsCategory).toBeInTheDocument();
+    screen.debug()
 
 
 
