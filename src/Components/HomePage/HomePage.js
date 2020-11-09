@@ -8,6 +8,7 @@ export const HomePage = (props) => {
           <div 
             id={tag}
             key={i}
+            data-testid={tag + 'container'}
             onClick={props.selectCategory}
             className="category">
               <h3 
@@ -35,7 +36,9 @@ export const HomePage = (props) => {
           <article 
             key={i}
             className="article-container">
-            <h2 className="article-title">{story.title}</h2>
+            <h2 
+              date-testid='article-title'
+              className="article-title">{story.title}</h2>
 
             <div
               className="nyt-link-container">
