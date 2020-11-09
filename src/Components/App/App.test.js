@@ -10,12 +10,11 @@ import moment from 'moment';
 
 describe("App", () => {
   
-  let mockCategories,
-  mockNewsData
+  let mockCategories
+
 
   beforeEach(() => {
-    mockCategories = ['politics', 'sports', 'movies', 't-magazine', 'sundayreview']
-    mockNewsData =  getTopStories.mockResolvedValue({
+    getTopStories.mockResolvedValue({
       automobiles: {
         copyright:"Copyright (c) 2020 The New York Times Company. All Rights Reserved.",
         last_updated:"2020-11-08T13:19:46-05:00",
@@ -55,8 +54,9 @@ describe("App", () => {
         section:"Arts",
         status:"OK"      
       },
-      politics:{
-      }
+      politics:{},
+      us:{}
+      
     });
   })
 
@@ -67,8 +67,23 @@ describe("App", () => {
       </MemoryRouter>
     );
   });
+
+  it('should start with default state', () => {
+      const defaultApp = new App()
+      expect(defaultApp.state.newsData).toStrictEqual({})
+      expect(defaultApp.state.allNewsCategories.length).toStrictEqual(26)
+      expect(defaultApp.state.selectedCategories).toStrictEqual([])
+      expect(defaultApp.state. currentCategory).toStrictEqual({})
+      expect(defaultApp.state.laterReadings).toStrictEqual([])
+      expect(defaultApp.state.error).toStrictEqual('')
+      expect(defaultApp.state.searchedItems).toStrictEqual({
+        query: '',
+        category: '', 
+        results: [], 
+        searchHistory:[]})
+    });
     
-  it('should display all intial elements', async() => {
+  it('should display all intial elements',() => {
     render(
       <MemoryRouter>
         <App />
@@ -140,6 +155,20 @@ describe("App", () => {
     expect(myReadsButton).toBeInTheDocument();
     expect(searchButton).toBeInTheDocument();
     expect(searchByDate).toBeInTheDocument();
+  });
+
+  it('the user should be able to select a category and then see the top stories for that category', () => {
+
+    render(
+      <MemoryRouter>
+        <App/>
+      </MemoryRouter>
+    );
+
+      screen.debug()
+
+
+
   });
 
 
