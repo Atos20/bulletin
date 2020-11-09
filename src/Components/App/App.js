@@ -29,23 +29,23 @@ export class App extends Component {
     }
   }
 
-  searchForStoriesByDate = (date) => {
+  searchForStoriesByDate = async(date) => {
     if(typeof date !== 'string' || date.length !== 10){
       return 
     }
     if (date.includes('/')) {
-      date =  date.split('/').join('-')
+      date = date.split('/').join('-')
     }
-      const copyOfNewsData = {...this.state.newsData}
+    const copyOfNewsData = await {...this.state.newsData}
       const matchingStories = allNewsCategories.reduce((acc, curr) => {
-        copyOfNewsData[curr].results.forEach(story => {
+         this.state.newsData[curr].results.forEach(story => {
           if (date === moment(story.created_date).format('MM-DD-YYYY')) {
             acc.results.push(story)
           }
         })
         return acc
       }, {results: []})
-
+      
       if (matchingStories.results.length === 0) {
         return console.log('no matching stories')
       }
@@ -66,7 +66,7 @@ export class App extends Component {
 
   saveToLocalStorage = () => {
     const copyOfLaterReadings = [...this.state.laterReadings]
-    const save = localStorage.setItem('laterReadings',JSON.stringify(copyOfLaterReadings))
+    localStorage.setItem('laterReadings',JSON.stringify(copyOfLaterReadings))
   }
 
   updateHomePage =  (news) => {
@@ -141,6 +141,7 @@ export class App extends Component {
 
   deleteAllSavedStories = () => {
     this.setState({ laterReadings: []})
+    localStorage.removeItem('laterReadings');
   }
   
   deleteSavedReading = (event) =>{
@@ -181,12 +182,13 @@ export class App extends Component {
 
   displayChosenCategory = async (category) => {
     const chosenOne =  await this.state.newsData[category]
+
     const newData = Object.keys(chosenOne).reduce((data) =>{
       data.section = chosenOne.section
       data.topStories = chosenOne.results
       data.last_updated = chosenOne.last_updated
-      data.id = Date.now()
       data.newsType = category
+      data.id = Date.now()
       data.topStories.forEach(story => story.saved= false)
       return data
     }, {})
@@ -269,12 +271,12 @@ export class App extends Component {
                 />
             </Route>
             
-            <Route
+            { this.error && <Route
               path='/*'>
               <div className="error-contianer">
-                <h1 className="error">Oops, something went wrong</h1>
+                {this.state.error ?<h1 className="error">{this.state.error} </h1>: <h1 className="error">'Oops, something went wrong'</h1>}
               </div>
-            </Route>
+            </Route>}
         </Switch>
       </div>
     )
