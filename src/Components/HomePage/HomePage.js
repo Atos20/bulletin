@@ -1,7 +1,6 @@
 import React from 'react'
 import './HomePage.scss'
 import moment from 'moment'
-import { FaClock } from "react-icons/fa";
 
 export const HomePage = (props) => {
     const tags = Object.keys(props.newsData).map((tag, i) => {
