@@ -38,7 +38,9 @@ export class NavBar extends Component {
 
               <select 
                 className="select"
-                value={this.props.searchedItems.category}
+                multiple
+                data-testid="select-multiple"
+                // value={this.props.searchedItems.category}
                 onChange={(event) => {this.props.updateSearchCategory(event)}}>
                 <option 
                   placeholder='category'
@@ -54,6 +56,7 @@ export class NavBar extends Component {
                 type="text" 
                 className="search-bar"/>
                 <i className="fas fa-search"
+                  data-testid="search-icon"
                   onClick={this.props.findUserStory}></i>
             </div>
             {this.props.error && <p className="error-message">{this.props.error}</p>}
@@ -73,10 +76,10 @@ export class NavBar extends Component {
                   className="find-button">search</button>
             </div>
 
-            <div className="control   buttons-container">
+            <div className="control buttons-container">
 
               <Link
-                to='/home'>
+                to='/'>
                 <button 
                 className="button">home</button>
               </Link>
@@ -95,7 +98,7 @@ export class NavBar extends Component {
                 className="button">Delete All</button>
               </Link>}
 
-              <Link to='/home'>
+              <Link to='/'>
                 <button 
                   onClick={this.props.generateRandomCategory}
                   className="button">randomize</button>
