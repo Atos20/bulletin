@@ -187,7 +187,7 @@ export class App extends Component {
       data.last_updated = chosenOne.last_updated
       data.id = Date.now()
       data.newsType = category
-      data.topStories.forEach(story =>story.saved= false)
+      data.topStories.forEach(story => story.saved= false)
       return data
     }, {})
     this.setState(prevState => ({
