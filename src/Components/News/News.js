@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
+
 
 export const News = (props) => {
 
@@ -17,7 +19,7 @@ export const News = (props) => {
                 
                 <div data-testid='saved-image-container' className="image-container">
                   <img 
-                    data-testid='saved-image'
+                    data-testid={'saved-image' + story.created_date}
                     id={story.created_date} 
                     className="article-img" 
                     src={ story.multimedia ? story.multimedia[0].url :'https://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png'} 
@@ -64,4 +66,9 @@ export const News = (props) => {
                 {injectUserSaves()}
         </div>
     )
+}
+
+News.propTypes = {
+    laterReadings: PropTypes.array,
+    deleteSavedReading: PropTypes.func.isRequired
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import './LaterReads.scss';
 import moment from 'moment';
 import { News } from '../News/News'
+import PropTypes from 'prop-types';
+
 
 export const LaterReads = (props) =>{
     
@@ -13,4 +15,10 @@ export const LaterReads = (props) =>{
             />
         </div>
     )
+}
+
+LaterReads.propTypes = {
+    laterReadings: PropTypes.array.isRequired,
+    deleteSavedReading: PropTypes.func.isRequired,
+    saveReading: PropTypes.func.isRequired
 }

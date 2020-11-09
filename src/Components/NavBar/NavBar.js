@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './NavBar.scss';
 import moment from 'moment';
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 
 export class NavBar extends Component {
@@ -109,4 +111,20 @@ export class NavBar extends Component {
       </nav>
     )
   }
+}
+
+NavBar.propTypes = {
+  updateSearchCategory: PropTypes.func.isRequired,
+  searchedItems: PropTypes.object.isRequired,
+  injectOptionsCategories: PropTypes.func.isRequired,
+  updateSearchQuery: PropTypes.func.isRequired,
+  laterReadings: PropTypes.array.isRequired,
+  findUserStory: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
+  saveToLocalStorage: PropTypes.func.isRequired,
+  deleteAllSavedStories: PropTypes.func.isRequired,
+  generateRandomCategory: PropTypes.func.isRequired,
+  userDate: PropTypes.string,
+  searchForStoriesByDate: PropTypes.func.isRequired,
+  query: PropTypes.string.isRequired,
 }
