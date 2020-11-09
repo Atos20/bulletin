@@ -247,12 +247,13 @@ export class App extends Component {
           generateRandomCategory={this.generateRandomCategory}
           userDate={this.state.userDate}
           searchForStoriesByDate={this.searchForStoriesByDate}
+          query={this.state.searchedItems.query}
         />
 
         <Switch>
             <Route 
             exact
-            path='/home'>
+            path='/'>
               <HomePage 
                 newsData={this.state.newsData}
                 selectCategory={this.selectCategory}
