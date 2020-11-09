@@ -40,7 +40,7 @@ export const News = (props) => {
                     <p className="by-line-content">{story.byline}</p>
                 </div>
                 <div className="nyt-link-container">
-                    <a className="more" href={story.url} >find more</a>
+                    <a data-testid='article-image' className="more" href={story.url} >find more</a>
                 </div>
 
                 <div
