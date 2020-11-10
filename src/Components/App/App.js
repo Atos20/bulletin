@@ -69,17 +69,15 @@ export class App extends Component {
   }
 
   updateHomePage =  (news) => {
-    return news.reduce((data, story) =>{
+    const data = news.reduce((data, story) =>{
       data.section= story.section
       data.topStories.push(story)
-      data.last_updated= story.updated_date
-      data.id= Date.now()
-      data.topStories.forEach(story =>
-        story.saved= false,
-        data.newsType= story.section
-        )
+      data.last_updated= story.updated_date   
+      data.newsType= story.section.toLowerCase()
+      data.topStories.forEach(story =>story.saved= false)
       return data
     },{topStories: []})
+    return data
   }
 
   findUserStory = () => {
@@ -105,7 +103,6 @@ export class App extends Component {
       currentCategory: newsFound,
       searchedItems: {...state.searchedItems,
         query:'',
-        category:'',
         results:  stories,
         searchHistory: [...state.searchedItems.searchHistory, stories ]
       }
@@ -187,7 +184,6 @@ export class App extends Component {
       data.topStories = chosenOne.results
       data.last_updated = chosenOne.last_updated
       data.newsType = category
-      data.id = Date.now()
       data.topStories.forEach(story => story.saved= false)
       return data
     }, {})
@@ -205,6 +201,7 @@ export class App extends Component {
              ...prevState.newsData,
             [category]: data
           }
+
         })))
       })
     } catch(error){

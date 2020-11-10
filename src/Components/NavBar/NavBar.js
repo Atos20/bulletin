@@ -72,7 +72,7 @@ export class NavBar extends Component {
                   placeholder={this.state.date}
                   type="text"/>
                 <button 
-                  onClick={this.findStories}
+                  // onClick={this.findStories}
                   className="find-button">search</button>
             </div>
 
