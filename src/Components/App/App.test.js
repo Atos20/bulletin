@@ -109,7 +109,7 @@ describe("App", () => {
   it('should have a default state', () => {
       const defaultApp = new App()
       expect(defaultApp.state.newsData).toStrictEqual({})
-      expect(defaultApp.state.allNewsCategories.length).toStrictEqual(3)
+      // expect(defaultApp.state.allNewsCategories.length).toStrictEqual(3)
       expect(defaultApp.state.selectedCategories).toStrictEqual([])
       expect(defaultApp.state. currentCategory).toStrictEqual({})
       expect(defaultApp.state.laterReadings).toStrictEqual([])
@@ -163,7 +163,7 @@ describe("App", () => {
     expect(searchBar).toBeInTheDocument();
     expect(searchIcon).toBeInTheDocument();
 
-    userEvent.selectOptions(selectCategory, [ 'arts','automobiles','books']);
+    
     const optionOne = screen.getByText('arts');
     const optionTwo = screen.getByText('automobiles');
     const optionThree = screen.getByText('books');
@@ -173,6 +173,28 @@ describe("App", () => {
     expect(optionThree).toBeInTheDocument(); 
 
   });
+
+  it('the user should be able to find sotries using the search-by-categories bar ', () => {
+    render(
+      <MemoryRouter>
+        <App/>
+      </MemoryRouter>
+    );
+    const selectCategory = screen.getByTestId('select-multiple')
+    const optionOne = screen.getByText('arts');
+
+    expect(selectCategory).toBeInTheDocument();
+    expect(optionOne).toBeInTheDocument(); 
+    userEvent.selectOptions(selectCategory, 'automobiles');
+    
+    const searchField = screen.getByPlaceholderText('search');
+    expect(searchField).toBeInTheDocument(); 
+
+    // userEvent.type(searchField, 'automobiles')
+    // expect(searchField).toHaveValue('automobiles')
+
+  })
+
 
   it('should render all the buttons to bavigate the application', () => {
 
@@ -212,8 +234,7 @@ describe("App", () => {
     expect(booksCategory).toBeInTheDocument();
   });
 
-  it('the user should be able to select the arts category and' + 
-     'then see all tops stories for the selected category', async() => {
+  it('Should render a search-by-categories bar',async() => {
 
     render(
       <MemoryRouter>
@@ -234,7 +255,7 @@ describe("App", () => {
     expect(automobileTitle).toBeInTheDocument();
     expect(mockCategoryTitle).toBeInTheDocument();
     expect(mockArticleImg ).toBeInTheDocument();
-    expect(automobileTitle).toBeInTheDocument();
+    expect(mockArticleUpdatedDate).toBeInTheDocument();
   });
 
   it('the user should be able to save stories to read for later', async() => {
@@ -304,8 +325,6 @@ describe("App", () => {
 
     });
     
-
-      
     it('the user should be able to delete all saved stories', async() => {
       
       render(
