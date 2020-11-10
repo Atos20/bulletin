@@ -271,12 +271,12 @@ export class App extends Component {
                 />
             </Route>
             
-            { this.error && <Route
+           <Route
               path='/*'>
               <div className="error-contianer">
-                {this.state.error ?<h1 className="error">{this.state.error} </h1>: <h1 className="error">'Oops, something went wrong'</h1>}
+                 <h1 className="error">'Oops, something went wrong'</h1>
               </div>
-            </Route>}
+            </Route>
         </Switch>
       </div>
     )
