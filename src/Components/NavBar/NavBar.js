@@ -40,9 +40,7 @@ export class NavBar extends Component {
 
               <select 
                 className="select"
-                multiple
                 data-testid="select-multiple"
-                // value={this.props.searchedItems.category}
                 onChange={(event) => {this.props.updateSearchCategory(event)}}>
                 <option 
                   placeholder='category'

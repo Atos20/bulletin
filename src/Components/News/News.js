@@ -50,7 +50,7 @@ export const News = (props) => {
                     className="delete-icon">
                     <i 
                     data-testid='delete icon'
-                    id={`${story.newsType}#${story.created_date}`}
+                    id={`${story.newsType || 'world'}#${story.created_date}`}
                     onClick={(event) => props.deleteSavedReading(event)}
                     className="fas fa-times-circle"></i>
                    
