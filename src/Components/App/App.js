@@ -272,7 +272,6 @@ export class App extends Component {
             exact
             path='/category/:category/top_stories'
             render={({ match }) => {
-              console.log(match.parms)
               return <HomePage 
                 name={match.params}
                 newsData={this.state.newsData}
