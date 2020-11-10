@@ -1,12 +1,11 @@
 import React from 'react';
 import './LaterReads.scss';
-import moment from 'moment';
 import { News } from '../News/News'
 import PropTypes from 'prop-types';
 
 
 export const LaterReads = (props) =>{
-    
+
     return (
         <div className="all-read-container">
             <News 
