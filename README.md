@@ -3,6 +3,8 @@
 [![Issues][issues-shield]](https://github.com/issues)
 [![Starred][stars-shield]](https://github.com/issues)
 
+[deployed Page](https://communik.herokuapp.com/)
+
 ## Contributors
   - [Orlando Murcio](https://www.github.com/atos20)
 
@@ -10,6 +12,8 @@
 [CommuniK](https://github.com/Atos20/communiK)
 
 ## Overview
+
+
 
 **ComuniK** aims to keep you informed with all the headlines and tops stories from around the US. News are fun specially in the times we live in. CommuniK allows you as a user to browse over more that 20 different categories and also the abilty to save the stories that you might be interested on but don't have the time to read at the moment.
 
