@@ -1,18 +1,19 @@
-import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { MemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom";
-import { News } from "./News";
+import React from 'react';
+import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import '@testing-library/jest-dom';
+import { News } from './News';
 
-describe("News", () => {
-  it("User should see home page by default", () => {
+describe('News', () => {
+  it('News should render withou crashing', () => {
     render(
-    //   <MemoryRouter>
-    //     <News />
-    //   </MemoryRouter>
+      <MemoryRouter>
+        <News 
+          laterReadings={[]}
+          deleteSavedReading={jest.fn()}
+        />
+      </MemoryRouter>
     );
-    // expect(screen.getByText("Indecision")).toBeInTheDocument();
   });
 
 });

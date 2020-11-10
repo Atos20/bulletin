@@ -11,48 +11,7 @@ import moment from 'moment';
 describe("App", () => {
 
   beforeEach( async() => {
-  //   getTopStories.mockResolvedValueOnce({
-  //     id: 1,
-  //     last_updated:'today',
-  //     newsType: 'automobiles',
-  //     section: 'Automobiles mock',
-  //     topStories:[
-  //       {
-  //         abstract:"A good host, he once said, could set his ego aside and let contestants be all they could be. But he let them know when he thought they missed easy answers.",
-  //         byline: "By Katharine Q. Seelye",
-  //         created_date: "mockDate",
-  //         des_facet: [],
-  //         geo_facet: [],
-  //         item_type:"Article",
-  //         kicker:"",
-  //         material_type_facet:"",
-  //         multimedia: [
-  //         {
-  //             caption:"Alex Trebek in 2010 on the set of “Jeopardy!” As the show’s host, Mr. Trebek was the essence of durability.",
-  //             copyright:"Amanda Edwards/Getty Images",
-  //             format:"superJumbo",
-  //             height:1363,
-  //             subtype:"photo",
-  //             type:"image",
-  //             url:"https://static01.nyt.com/images/2019/10/16/obituaries/00Trebeck1/merlin_76301875_8ff1776a-2a7d-4395-8493-092b35c7005b-superJumbo.jpg",
-  //             width:""
-  //         }
-  //         ],
-  //         org_facet: [],
-  //         per_facet: ["Trebek, Alex"],
-  //         published_date: "2020-11-08T12:41:08-05:00",
-  //         saved: false,
-  //         section:"arts",
-  //         short_url:"",
-  //         subsection:"television",
-  //         title:"Alex Trebek, Longtime Host of ‘Jeopardy!,’ Dies at 80",
-  //         updated_date:"2020-11-08T18:44:28-05:00",
-  //         uri:"nyt://article/406907aa-cd83-5fdd-a34b-cae37788f5cc",
-  //         url:"https://www.nytimes.com/2020/11/08/arts/television/alex-trebek-dead.html"
-  //     }
-  //   ]
-  // })
-
+    
     await waitFor(() => getTopStories.mockResolvedValue(
       { 
         copyright:"Mock copyright",
@@ -109,7 +68,6 @@ describe("App", () => {
   it('should have a default state', () => {
       const defaultApp = new App()
       expect(defaultApp.state.newsData).toStrictEqual({})
-      // expect(defaultApp.state.allNewsCategories.length).toStrictEqual(3)
       expect(defaultApp.state.selectedCategories).toStrictEqual([])
       expect(defaultApp.state. currentCategory).toStrictEqual({})
       expect(defaultApp.state.laterReadings).toStrictEqual([])
