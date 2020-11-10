@@ -47,7 +47,7 @@ export const News = (props) => {
                 </div>
 
                 <div
-                        
+
                     className="delete-icon">
                     <i 
                     data-testid='delete icon'
