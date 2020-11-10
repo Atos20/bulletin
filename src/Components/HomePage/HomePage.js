@@ -2,7 +2,7 @@ import React from 'react';
 import './HomePage.scss';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom'
 
 export const HomePage = (props) => {
     const tags = Object.keys(props.newsData).map((tag, i) => {
@@ -13,6 +13,8 @@ export const HomePage = (props) => {
             data-testid={tag + 'container'}
             onClick={props.selectCategory}
             className="category">
+            <Link
+              to={`/category/${tag}/top_stories`}>
               <h3 
                 data-testid={tag}
                 id={tag}
@@ -20,6 +22,8 @@ export const HomePage = (props) => {
                 className="category-name">
                 {tag}
               </h3>
+              </Link>
+
           </div>
         )
     })
@@ -80,7 +84,7 @@ export const HomePage = (props) => {
         <section className="homepage">
           <section className="categories-container">
             <div className="categories">
-            {tags}
+              {tags}
             </div>
 
              <div className="some-news-container">
