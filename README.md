@@ -1,70 +1,133 @@
-# Getting Started with Create React App
+[![Contributors][contributors-shield]](https://github.com/Atos20/communiK/graphs/contributors)
+[![Forks][forks-shield]](https://github.com/Atos20/communiK/network/members)
+[![Issues][issues-shield]](https://github.com/issues)
+[![Starred][stars-shield]](https://github.com/issues)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Contributors
+  - [Orlando Murcio](https://www.github.com/atos20)
 
-## Available Scripts
+## Project Directions
+[CommuniK](https://github.com/Atos20/communiK)
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+**ComuniK** aims to keep you informed with all the headlines and tops stories from around the US. News are fun specially in the times we live in. CommuniK allows you as a user to browse over more that 20 different categories and also the abilty to save the stories that you might be interested on but don't have the time to read at the moment.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Do you want to find a top stories by date?, don't worry!. CommuniK allows you also to search stories by date and save them too.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Did you have the time to read all your saved stories or just one?, you can also delete them as you go or remove them all at the same time.
 
-### `npm test`
+Enjoy it and stay informed.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Context
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`CommuniK` is a project built in five days. This is the last solo project of the third Module of Turing School Software and Design that aims to solidify the use of React, Router and Asynchronomus JavaScript. The main goal in this project were the ability to request information from an [API](https://developer.nytimes.com/), manipulate the data and display it using React. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Technologies used:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  * React
+  * Express
+  * SCSS
+  * Git
+  * GitHub
+  * local storage
 
-### `npm run eject`
+## Challenges
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  * Manipulating state using objects
+  * File organizations
+  * Compoenents arquitecture
+  * Testing with jest
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Wins
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  * Unit testing
+  * Integration testing
+  * Mocking an API request
+  * Saving data to local storage
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Future Goals
 
-## Learn More
+  * Resolve bugs listed on the project board
+  * Add more styling
+  * Add more granuluar integration testing
+  * Build a local server using Express
+  * Add the ability to submit you own article
+  * Find more information using other APIS such as [NewsAPI](https://newsapi.org/docs/endpoints/everything)
+  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## In Action
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Take 1
 
-### Code Splitting
+- Introduction
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- When the user first interacts with the application, the app renders a welcoming message. The user can see on the left-hand side all the categories vailable to choose from. 
 
-### Analyzing the Bundle Size
+ - The user can interact and browse the applcation's content from all the available categories. As of this moment there are 26 categgories that the user can select.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ <img src="https://media.giphy.com/media/cfgYXZpqf4v8Y7bVyE/giphy.gif" alt="The user can interact and browse the applcation's content from all the available categories. As of this moment there are 26 categgories that the user can select." height=100% width=80%/>
 
-### Making a Progressive Web App
+#### Take 2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Searching by category
 
-### Advanced Configuration
+- Over the navigation bar, the user can select a category and fill out the search bar to look for mre stories.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  <img src="https://media.giphy.com/media/aZqRGYv5mYfVamSpW8/giphy.gif" alt="Over the navigation bar, the user can select a category and fill out the search bar to look for mre stories.
+" height=auto width=75%/>
 
-### Deployment
+#### Take 3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Search by date
 
-### `npm run build` fails to minify
+There is another way for the user to find stories.This can be accomplised by using the `search-by-date` bar. The user should write a date in the following formats, `MM-DDYYYY` or `MM-DD-YYYY`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  <img src="https://media.giphy.com/media/h4tRLmKOrvJsc7VeCP/giphy.gif" alt="There is another way for the user to find more stories, the user can write the date and click on search" height=auto width=75%/>
+
+#### Take 4
+
+- Saving stories to read for later
+
+- When the user has found an article to read but does not have the time to engage with the story, it the user can select the story and read it later. The stories should persist even if the user reloads the page.
+
+<img src="https://media.giphy.com/media/aKIGrdN8vNOZyEKWo1/giphy.gif"  alt ="When the user has found an article to read but does not have the time to engage with the story, it the user can select the story and read it later. The stories should persist even if the user reloads the page." height=auto width=75%/>
+
+### Set up
+
+* On the top right corner of this page, click the **Fork** button.
+- Clone the repository to your computer `git clone <URL>`
+  - When you run git clone - git clone [remote-address] [what you want to name the repo]
+  replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
+- `cd` into the repository with the following command `cd <repo-name>`
+- Run `npm install` to install all required dependencies
+- By running `npm start` the application should run on `http://localhost:3000/`
+
+### Contribute
+
+- Create a new branch with `git checkout -b <new branch name>`
+- Open your text editor and add or remove functionalities to the site.
+- `git add` and `git commit -m "<your commit meessage>"` to save the changes to your local repository
+- `git push` your changes
+- Make use a PR template whe creating a new pull requests
+
+
+### Project Managers
+- [Leta](https://github.com/letakeane)
+- [Khalid](https://github.com/khalidwilliams)
+
+
+[contributors-shield]: https://img.shields.io/github/contributors/Atos20/communiK.svg?style=flat-square 
+[contributors-url]: https://github.com/Atos20/communiK/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/Atos20/communiK.svg?style=flat-square
+[forks-url]: https://github.com/Atos20/communiK/network/members
+
+[stars-shield]: https://img.shields.io/github/stars/Atos20/communiK.svg?style=flat-square
+[stars-url]: https://github.com/Atos20/communiK/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/Atos20/communiK.svg?style=flat-square
+[issues-url]: https://github.com/Atos20/communiK/issues
+
+
