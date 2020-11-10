@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { getTopStories } from '../../apiCalls'
-import allNewsCategories from '../../data/data'
-import { HomePage } from '../HomePage/HomePage'
-import { LaterReads } from '../LaterReads/LaterReads'
+import { getTopStories } from '../../apiCalls';
+import allNewsCategories from '../../data/data';
+import { HomePage } from '../HomePage/HomePage';
+import { LaterReads } from '../LaterReads/LaterReads';
 import { Switch, Route } from "react-router-dom";
-import { NavBar } from '../NavBar/NavBar'
-
+import { NavBar } from '../NavBar/NavBar';
 import moment from 'moment'
-import { FaCreativeCommonsPd } from 'react-icons/fa';
+
 export class App extends Component {
   constructor(){
     super()
@@ -36,7 +35,7 @@ export class App extends Component {
     if (date.includes('/')) {
       date = date.split('/').join('-')
     }
-    const copyOfNewsData = await {...this.state.newsData}
+    await {...this.state.newsData}
       const matchingStories = allNewsCategories.reduce((acc, curr) => {
          this.state.newsData[curr].results.forEach(story => {
           if (date === moment(story.created_date).format('MM-DD-YYYY')) {
