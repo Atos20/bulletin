@@ -257,6 +257,7 @@ export class App extends Component {
               />
             </Route>
 
+
             <Route 
               exact
               path='/my_reads'>
@@ -267,6 +268,20 @@ export class App extends Component {
                 />
             </Route>
             
+            <Route 
+            exact
+            path='/category/:category/top_stories'
+            render={({ match }) => {
+              return <HomePage 
+                name={match.params}
+                newsData={this.state.newsData}
+                selectCategory={this.selectCategory}
+                currentCategory={this.state.currentCategory}
+                saveReading={this.saveReading}
+              />
+            }}>
+            </Route>
+
            <Route
               path='/*'>
               <div className="error-contianer">
