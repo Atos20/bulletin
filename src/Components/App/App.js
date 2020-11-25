@@ -94,6 +94,7 @@ export class App extends Component {
     const stories = this.state.newsData[category].results.filter(story => {
       return story.title.toLowerCase().includes(query)
     })
+    console.log(stories)
     if (stories.length === 0 ) {
       return this.setState({error: 'no items found'})
     }
@@ -156,6 +157,7 @@ export class App extends Component {
   } 
   
   saveReading = (event) => {
+    console.log(event.target.id)
     const id = event.target.id.split('#')
     const allNewsCopy = this.state.newsData
     const savedElement = allNewsCopy[id[0]].results.find(entry => {
@@ -177,6 +179,7 @@ export class App extends Component {
   }
 
   displayChosenCategory = async (category) => {
+    console.log(category)
     const chosenOne =  await this.state.newsData[category]
 
     const newData = Object.keys(chosenOne).reduce((data) =>{
@@ -201,7 +204,6 @@ export class App extends Component {
              ...prevState.newsData,
             [category]: data
           }
-
         })))
       })
     } catch(error){
