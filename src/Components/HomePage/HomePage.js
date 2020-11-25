@@ -53,7 +53,7 @@ export const HomePage = (props) => {
                 className="more" 
                 href={story.url} >more</a>
                 <i 
-                id={`${props.currentCategory.newsType}#${story.created_date}`}
+                id={`${props.currentCategory.newsType}#${Date.now()}`}
                 data-testid="read for later icon"
                 onClick={(event) => props.saveReading(event)}
                 className={!story.saved ? "far fa-bookmark" :"fas fa-bookmark" }></i>
